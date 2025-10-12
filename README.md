@@ -7,12 +7,13 @@ Simple customizable website for organizing and managing products and inventory.
 The primary goal is to create something customizable so users can easily bring up a web site, customize it with basic themeing (logo, site name, colors, etc), and then create products, allow users to view and select them, manage inventory, and also orders. 
 
 ## WORK IN PROGRESS
-This is currently very much a work in progress to serve as a teaching / learning platform to go alongside some tutorials about programming and developing a websiste with PHP and up-to-date coding practices using the PDO MySQL connector to access the database. 
+This is currently ***very much a work in progress*** to serve as a teaching / learning platform to go alongside some tutorials about programming and developing a websiste with PHP and up-to-date coding practices using the PDO MySQL connector to access the database. 
 
 Tutorials and reference information will be updated at the below blog and YouTube channel. 
-https://opensourcetechtrn.blogspot.com/
-https://www.youtube.com/@opensourcetechtraining64
 
+https://opensourcetechtrn.blogspot.com/
+
+https://www.youtube.com/@opensourcetechtraining64
 
 ## Goals / Tasks
 - Create and manage users -- ready
@@ -35,4 +36,22 @@ To bring up the website there is a reference Docker compose and Dockerfile in th
 ```
 docker-compose up -d
 ```
-If a different directory is desired for mapping to the DB root and the web server root, that can be adjusted in the docker-compose.yml file
+If a different directory is desired for mapping to the DB root and the web server root, that can be adjusted in the docker-compose.yml file. 
+
+On first login there is a default admin user provisioned with the below credentials:
+```
+User: admin
+PWD: admin123456
+```
+
+This should be changed and can be after first login.
+
+### Adjust the defaults
+
+All of the database names and passwords are defined both in the docker-compose.yml file and under Work/MySQLlogin.ini. For security it is recommended to move the MySQLlogin.ini file to outside of the webserver root container to somewhere else - such as var/www before html - on the websvr-lamp container. Doing so also requires that line 3 in the header.php file also be adjusted to reflect the corect file path. 
+
+```
+	$login = parse_ini_file('/var/www/html/MySQLlogin.ini');
+```
+
+
