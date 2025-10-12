@@ -9,6 +9,7 @@ services:
       - ./mySQLdata:/var/lib/mysql:z
     environment:
      - MYSQL_ROOT_PASSWORD=my5QLpAssw0rd
+     - MYSQL_DATABASE=opensalesinventory
 
   websvrlamp:
     build: ./
