@@ -19,7 +19,7 @@ https://www.youtube.com/@opensourcetechtraining64
 - Create and manage users -- ready
 - Handle logins and split out customers from admins -- ready
 - Manage products and uploads -- ready
-- Allow for images to be uploaded for the products  -- TBD
+- Allow for images to be uploaded for the products  -- ready
 - Create a product view page -- TBD
 - Allow for detailed product view -- TBD
 - Manage orders -- TBD
