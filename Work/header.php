@@ -4,7 +4,7 @@
 	$host = $login['host'];
 	$user = $login['user'];
 	$pwd = $login['pwd'];
-	$dbname = "inventpos";
+	$dbname = $login['dbname'];
 	//PDO connection
 	//DSN stands for data source name, dbh should be db host
 	//reference: https://www.phptutorial.net/php-pdo/php-pdo-mysql/
@@ -70,7 +70,13 @@
 		$defaultadminstmt = $conn->prepare($defaultadmin);
 		$defaultadminstmt->execute();
 	}
-
+	//Common functions to call later:
+	//clear out extra line breaks when editing a large text block that already used nl2br
+	function br2nl($string) {
+		$string = str_replace("<br />", "", $string);
+		return $string;
+	}
+	
 ?>
 <!DOCTYPE html>
 <html>

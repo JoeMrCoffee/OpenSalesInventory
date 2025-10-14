@@ -14,11 +14,11 @@
 		$prodlist = $prodstmt->fetchAll(PDO::FETCH_ASSOC);
 		foreach($prodlist as $prod){
 			$pname = $prod['Name'];
-			$pdesc = $prod['Description'];
+			$pdesc = br2nl($prod['Description']);
 			$pquant = $prod['Quantity'];
 			$pimage = $prod['Images'];
 			$pid = $prod['UID'];
-			$pspecs = $prod['Specifications'];
+			$pspecs = br2nl($prod['Specifications']);
 			$pprice = $prod['Price'];
 			$pcost = $prod['Cost'];
 			//This is a tripple escape '\" \"' <-- something interesting
