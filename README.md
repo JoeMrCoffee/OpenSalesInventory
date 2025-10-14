@@ -54,4 +54,6 @@ All of the database names and passwords are defined both in the docker-compose.y
 	$login = parse_ini_file('/var/www/html/MySQLlogin.ini');
 ```
 
+## Troubleshooting
 
+If the images have issues being uploaded, please ensure the image directory has the correct permissions - it should be owned by the Apache user of the web server container, or can be opened as 777 on the host system assuming the system is otherwise well protected. The max post size in the Dockerfile is set to 20 MB in max size, which could be increased, but the page isn't really meant to be a file management system so if it is adjusted too large there will likely be some lag or other consequences. 
