@@ -63,9 +63,6 @@
 			</form></div>";
 		echo "</table></div>";
 		
-		//<p><strong>Product description: </strong><br><br><textarea class='giantinput' name='pdesc'></p>
-		//<p><strong>Product specifications: </strong><br><br><textarea class='giantinput' name='pspecs'></p>
-		
 	}
 	else { echo "<h3>Invalid user, please login.</h3>"; } 
 	
