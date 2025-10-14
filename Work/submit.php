@@ -7,8 +7,8 @@
 			$uphone = $_POST['uphone'];
 			$hashcheck = password_get_info($_POST['upwd']);
 			if ($hashcheck['algoName'] === 'unknown'){
-            	$upwd = password_hash($_POST['upwd'], PASSWORD_DEFAULT);
-        	} else { $upwd = $_POST['upwd']; }			
+				$upwd = password_hash($_POST['upwd'], PASSWORD_DEFAULT);
+			} else { $upwd = $_POST['upwd']; }			
 			$uid = $_POST['uid'];
 			$utype = $_POST['utype'];
 			//sql statement
@@ -47,16 +47,17 @@
 			$pspecs = nl2br($_POST['pspecs']);
 			$pprice = $_POST['pprice'];
 			$pcost = $_POST['pcost'];
+			$imagesuccess = "";
 			//$previews = $_POST['Reviews']; //this needs to be updated from the product view page
 			//image processing
 			if ( $_FILES['pimage']['tmp_name'] != null ){
-	            $pimage = basename($_FILES['pimage']['name']);
+				$pimage = basename($_FILES['pimage']['name']);
 				$tmpimage = $_FILES['pimage']['tmp_name'];
-	            $curdir = getcwd();
-                $savefile = $curdir."/images/".$pimage; 
-                $pimgname = "images/".$pimage;
-                move_uploaded_file($tmpimage, $savefile) or die("Cannot move uploaded file to working directory");
-	            echo "<h3>File $savefile uploaded successfully</h3>";
+				$curdir = getcwd();
+				$savefile = $curdir."/images/".$pimage; 
+				$pimgname = "images/".$pimage;
+				move_uploaded_file($tmpimage, $savefile) or die("Cannot move uploaded file to working directory");
+				$imagesuccess = "<h4>File $savefile uploaded successfully</h4>";
 				//sql statement
 				$updateproduct = "UPDATE products SET Name='$pname', Images='$pimgname', Description='$pdesc', Specifications='$pspecs', Price='$pprice', Cost='$pcost' WHERE UID='$pid'";
 			}
@@ -67,7 +68,7 @@
 			$produpdatestmt = $conn->prepare($updateproduct);
 			$produpdatestmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>Product data updated.</h3></div>";
+				<h4>Product data updated.</h4>$imagesuccess</div>";
 		}
 		else if(isset($_POST['newProd'])){
 			$pname = $_POST['pname'];
@@ -76,15 +77,16 @@
 			$pprice = $_POST['pprice'];
 			$pcost = $_POST['pcost'];
 			$pid = $pname."".date("Ymd")."".rand(10,100)."";
+			$imagesuccess = "";
 			//image processing
 			if ( $_FILES['pimage']['tmp_name'] != null ){
-	            $pimage = basename($_FILES['pimage']['name']);
+				$pimage = basename($_FILES['pimage']['name']);
 				$tmpimage = $_FILES['pimage']['tmp_name'];
-	            $curdir = getcwd();
-                $savefile = $curdir."/images/".$pimage; 
-                $pimgname = "images/".$pimage;
-                move_uploaded_file($tmpimage, $savefile) or die("Cannot move uploaded file to working directory");
-	            echo "<h3>File $savefile uploaded successfully</h3>";
+				$curdir = getcwd();
+				$savefile = $curdir."/images/".$pimage; 
+				$pimgname = "images/".$pimage;
+				move_uploaded_file($tmpimage, $savefile) or die("Cannot move uploaded file to working directory");
+				$imagesuccess = "<h4>File $savefile uploaded successfully</h4>";
 				//sql statement
 				$newproduct = "INSERT INTO products (UID, Name, Images, Description, Specifications, Price, Cost) VALUES ('$pid', '$pname', '$pimgname', '$pdesc', '$pspecs', '$pprice', '$pcost')"; 
 			}
@@ -95,7 +97,7 @@
 			$newproductstmt = $conn->prepare($newproduct);
 			$newproductstmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>Product data updated.</h3></div>";
+				<h4>Product data updated.</h4>$imagesuccess</div>";
 		}
 		else if(isset($_POST['prodDelete'])){
 			$pid = $_POST['pid'];
