@@ -17,7 +17,7 @@
     if ($userlvl == "admin") {
 	echo "<br>-----------ADMIN------------<br>
         <a href='usermgmt.php' class='titlelink dropdownlink'>USER MANAGEMENT</a><br>
-        <a href='prodmgmt.php' class='titlelink dropdownlink'>PROJECT MANAGER</a><br>";
+        <a href='prodmgmt.php' class='titlelink dropdownlink'>PRODUCT MANAGER</a><br>";
     }
 ?>
 	</div>

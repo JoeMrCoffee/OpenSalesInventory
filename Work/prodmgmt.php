@@ -10,7 +10,7 @@
 		$productquery = 'SELECT * FROM products';
 		$prodstmt = $conn->prepare($productquery);
 		$prodstmt->execute();
-		//Fetch the user data and verify login
+		//Fetch the product data
 		$prodlist = $prodstmt->fetchAll(PDO::FETCH_ASSOC);
 		foreach($prodlist as $prod){
 			$pname = $prod['Name'];
@@ -62,6 +62,9 @@
 			<p><input type='submit' value='Create' name='newProd'>
 			</form></div>";
 		echo "</table></div>";
+		
+		//<p><strong>Product description: </strong><br><br><textarea class='giantinput' name='pdesc'></p>
+		//<p><strong>Product specifications: </strong><br><br><textarea class='giantinput' name='pspecs'></p>
 		
 	}
 	else { echo "<h3>Invalid user, please login.</h3>"; } 

@@ -39,9 +39,9 @@ div.overview {
     word-wrap: break-word;
     display: inline-block;
     vertical-align: middle;
-    max-width: 30%;
+    max-width: 25%;
     min-width: 25%;
-    min-height: 300px;
+    min-height: 200px;
     margin: 10px;
     text-align: center;
     color: black;
@@ -276,7 +276,7 @@ select.config {
 }
 .popupwindow {
     position: absolute;
-    top: 180px;
+    top: 100px;
     left: 20%;
     min-width: 50%;
     background-color: white;
