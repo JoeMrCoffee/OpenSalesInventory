@@ -20,7 +20,7 @@ https://www.youtube.com/@opensourcetechtraining64
 - Handle logins and split out customers from admins -- ready
 - Manage products and uploads -- ready
 - Allow for images to be uploaded for the products  -- ready
-- Create a product view page -- TBD
+- Create a product view page -- ready, but the design may be adjusted later
 - Allow for detailed product view -- TBD
 - Manage orders -- TBD
 - Manage inventory -- TBD
