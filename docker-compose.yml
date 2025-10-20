@@ -21,13 +21,3 @@ services:
      - mySQLlamp
     depends_on:
      - mySQLlamp
-
-  phpmyadminlamp:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-lamp
-    environment:
-      - PMA_HOST=mySQLlamp
-      - MYSQL_ROOT_PASSWORD=my5QLpAssw0rd
-      - PMA_PORT=3306
-    ports:
-      - 8081:80
