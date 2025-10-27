@@ -30,7 +30,7 @@
 				echo "<tr>";
 				$prodcnt += 1;
 			}
-			echo "<td>$pname</td><td>$pdesc</td><td>$ $pprice</td><td>$ $pcost</td><td><button onclick='popupdisplay(\"$pid\")'>Edit</button></td></tr>";
+			echo "<td>$pname</td><td>".substr($pdesc,0,200)." ...</td><td>$ $pprice</td><td>$ $pcost</td><td><button onclick='popupdisplay(\"$pid\")'>Edit</button></td></tr>";
 			//Edit user pop-up
 			echo "<div class='popupwindow' style='visibility: hidden;' id='$pid'><img class='closepopup' onclick='popupdisplay(\"$pid\")' src='close.png'>
 				<form method='post' action='submit.php' enctype='multipart/form-data'>

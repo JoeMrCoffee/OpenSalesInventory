@@ -12,17 +12,19 @@
 		$pname = $prod['Name'];
 		$pdesc = $prod['Description'];
 		$pimage = $prod['Images'];
-		$pspecs = $prod['Specifications']; //may add this later
+		$pspecs = $prod['Specifications'];
 		$pprice = $prod['Price'];
-		echo "<h3>Product details</h3><div class='postlink'>";
+		echo "<h3>Product details</h3><div class='postlink'>
+			<table width=100%><tr>";
 		if($pimage != "none" && $pimage != null){ 
-			echo "<div style='text-align: center;'><img src='$pimage' style='max-width: 50%;'></div>";
+			echo "<td style='text-align: center;'><img src='$pimage' style='max-width: 100%;'></td>";
 		}
-		echo "<h4>$pname</h4>
+		else { echo "<td></td>"; }
+		echo "<td><h4>$pname</h4>
 			<p><strong>Description:</strong><br>$pdesc</p>
-			<p><strong>Specifications:</strong><br>$pspecs</p>
-			<p ><strong>Price: </strong> $ $pprice</p>
-			</div>";
+			<p><strong>Price: </strong> $ $pprice</p></td>
+			<tr><td colspan='2'><p><strong>Specifications:</strong><br>$pspecs</p></td></tr>
+			</table></div><br>";
 
 	}
 
