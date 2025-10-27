@@ -33,7 +33,7 @@
 	if ($verifyerror == null) { }
 	else { 
 		$create = ["CREATE TABLE `products` (
-			`UID` varchar(20),
+			`UID` varchar(100),
 			`Name` varchar(200) DEFAULT NULL,
 			`Images` text DEFAULT NULL,
 			`Description` text DEFAULT NULL,
@@ -44,7 +44,7 @@
 			`Cost` decimal(8,2) DEFAULT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
 			"CREATE TABLE `users` (
-			`UID` varchar(20),
+			`UID` varchar(100),
 			`Name` varchar(200),
 			`password` varchar(200),
 			`email` varchar(200) DEFAULT NULL,
@@ -52,8 +52,8 @@
 			`usertype` varchar(10) DEFAULT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
 			"CREATE TABLE `inventory` (
-			`UID` varchar(20),
-			`PrdtMapUID` varchar(20),
+			`UID` varchar(100),
+			`PrdtMapUID` varchar(100),
 			`Barcode` varchar(200),
 			`QtyPerBox` int(10) DEFAULT NULL,
 			`Cost` decimal(10,2) DEFAULT NULL,
