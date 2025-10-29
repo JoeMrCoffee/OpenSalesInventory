@@ -21,9 +21,9 @@ https://www.youtube.com/@opensourcetechtraining64
 - Manage products and uploads -- ready
 - Allow for images to be uploaded for the products  -- ready
 - Create a product view page -- ready, but the design may be adjusted later
-- Allow for detailed product view -- TBD
-- Manage orders -- TBD
+- Allow for detailed product view -- Basic version ready
 - Manage inventory -- TBD
+- Manage orders -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Allow for site admins to customize the look and branding of the website -- TBD
 
