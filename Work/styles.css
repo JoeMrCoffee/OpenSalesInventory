@@ -39,9 +39,9 @@ div.overview {
     word-wrap: break-word;
     display: inline-block;
     vertical-align: middle;
-    max-width: 25%;
-    min-width: 25%;
-    min-height: 200px;
+    max-width: 300px;
+    min-width: 300px;
+    min-height: 250px;
     margin: 10px;
     text-align: center;
     color: black;
@@ -79,7 +79,6 @@ button:hover { box-shadow: 1px 1px 3px gray; }
 .buttontgthr {
     display: inline-block;
     margin-right: 20px;
-
 }
 
 input[type=submit]{
