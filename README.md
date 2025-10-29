@@ -24,7 +24,7 @@ https://www.youtube.com/@opensourcetechtraining64
 - Allow for detailed product view -- Basic version ready
 - Manage inventory -- TBD
 - Manage orders -- TBD
-- Create a search bar for finding products and filtering types
+- Create a search bar for finding products and filtering types -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Allow for site admins to customize the look and branding of the website -- TBD
 
