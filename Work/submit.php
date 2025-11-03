@@ -1,6 +1,8 @@
 <?php 
 	include 'titlebar.php';
 	if ($userlvl == "admin" && $validity == "valid") {
+		
+		//User Management submissions
 		if(isset($_POST['uid']) && isset($_POST['userUpdate'])){
 			$uname = $_POST['uname'];
 			$uemail = $_POST['uemail'];
@@ -16,7 +18,8 @@
 			$userupdatestmt = $conn->prepare($updateuser);
 			$userupdatestmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>User data updated.</h3></div>";
+				<h3>User data updated.</h3>
+				<p><a href='usermgmt.php'><button>< BACK</button></a></p></div>";
 		}
 		else if(isset($_POST['newUser'])){
 			$uname = $_POST['uname'];
@@ -30,7 +33,8 @@
 			$newuserstmt = $conn->prepare($newuser);
 			$newuserstmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>User added.</h3></div>";
+				<h3>User added.</h3>
+				<p><a href='usermgmt.php'><button>< BACK</button></a></p></div>";
 		}
 		else if(isset($_POST['userDelete'])){
 			$uid = $_POST['uid'];
@@ -38,8 +42,11 @@
 			$delUserstmt = $conn->prepare($delUser);
 			$delUserstmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>User removed.</h3></div>";
+				<h3>User removed.</h3>
+				<p><a href='usermgmt.php'><button>< BACK</button></a></p></div>";
 		}
+		
+		//Product management section
 		if(isset($_POST['pid']) && isset($_POST['prodUpdate'])){
 			$pname = $_POST['pname'];
 			$pdesc = nl2br($_POST['pdesc']);
@@ -68,7 +75,9 @@
 			$produpdatestmt = $conn->prepare($updateproduct);
 			$produpdatestmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h4>Product data updated.</h4>$imagesuccess</div>";
+				<h4>Product data updated.</h4>
+				<p>$imagesuccess</p>
+				<p><a href='prodmgmt.php'><button>< BACK</button></a></p></div>";
 		}
 		else if(isset($_POST['newProd'])){
 			$pname = $_POST['pname'];
@@ -97,7 +106,9 @@
 			$newproductstmt = $conn->prepare($newproduct);
 			$newproductstmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h4>Product data updated.</h4>$imagesuccess</div>";
+				<h4>Product data updated.</h4>
+				<p>$imagesuccess</p>
+				<p><a href='prodmgmt.php'><button>< BACK</button></a></p></div>";
 		}
 		else if(isset($_POST['prodDelete'])){
 			$pid = $_POST['pid'];
@@ -105,7 +116,53 @@
 			$delProdstmt = $conn->prepare($delUser);
 			$delProdstmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>Product removed.</h3></div>";
+				<h3>Product removed.</h3>
+				<p><a href='prodmgmt.php'><button>< BACK</button></a></p></div>";
+		}
+		
+		//Inventory management section
+		if(isset($_POST['inventUpdate']) && isset($_POST['inid'])){
+			$inid = $_POST['inid'];
+			$iname = $_POST['iname'];
+			$pid = $_POST['pid'];
+			$iBarcode = $_POST['ibarcode'];
+			$iQty = $_POST['iqty'];
+			$iShelflife = $_POST['ishelf'];
+			$iArrival = $_POST['iarrival'];
+			$iCost = $_POST['icost'];
+			$iAmount = $_POST['iamount'];
+			$updateInventStmt = "UPDATE inventory SET Name='$iname', PrdtMapUID='$pid', Barcode='$iBarcode', QtyPerBox='$iQty', Shelflife='$iShelflife', ArrivalDate='$iArrival', Amount='$iAmount', Cost='$iCost' WHERE UID='$inid'";
+			$updateInventPrepare = $conn->prepare($updateInventStmt);
+			$updateInventPrepare->execute();
+			echo "<h3>Submit</h3><div class='postlink'>
+				<h3>Inventory item updated.</h3>
+				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
+		}
+		else if(isset($_POST['inventInsert'])){
+			$iname = $_POST['iname'];
+			$inid = $iname."".date("Ymd")."".rand(10,100)."";
+			$pid = $_POST['pid'];
+			$iBarcode = $_POST['ibarcode'];
+			$iQty = $_POST['iqty'];
+			$iShelflife = $_POST['ishelf'];
+			$iArrival = $_POST['iarrival'];
+			$iCost = $_POST['icost'];
+			$iAmount = $_POST['iamount'];
+			$createInventStmt = "INSERT INTO inventory (UID, Name, PrdtMapUID, Barcode, QtyPerBox, Cost, Shelflife, ArrivalDate, Amount) VALUES ('$inid', '$iname', '$pid', '$iBarcode', '$iQty', '$iCost', '$iShelflife', '$iArrival', '$iAmount')";
+			$createInventPrepare = $conn->prepare($createInventStmt);
+			$createInventPrepare->execute();
+			echo "<h3>Submit</h3><div class='postlink'>
+				<h3>Inventory item created.</h3>
+				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
+		}
+		else if(isset($_POST['inventDelete'])){
+			$inid = $_POST['inid'];
+			$inventdelstmt = "DELETE FROM inventory WHERE UID='$inid'";
+			$inventdelprepare = $conn->prepare($inventdelstmt);
+			$inventdelprepare -> execute();
+			echo "<h3>Submit</h3><div class='postlink'>
+				<h3>Inventory item deleted.</h3>
+				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
 		}
 	}
 
