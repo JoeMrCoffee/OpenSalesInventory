@@ -55,7 +55,7 @@
 					<p><strong>Shelf life (days): </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='ishelf' value='$iShelflife'> days</p>
 					<p><strong>Arrival date: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='date' name='iarrival' value='$iArrival'></p>
 					<p><strong>Current amount: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='iamount' value='$iAmount'></p>
-					<p><strong>Package cost: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='icost' value='$iCost'></p>
+					<p><strong>Package cost: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='icost' step='0.01' value='$iCost'></p>
 					<p><input type='submit' value='Update' name='inventUpdate'></form>
 					<form method='post' action='submit.php' class='buttontgthr'><input type='hidden' value='$inid' name='inid'>&nbsp;&nbsp;&nbsp;
 						<input type='submit' value='Delete' name='inventDelete' onclick='return confirmfunction()'>
@@ -77,7 +77,7 @@
 			<p><strong>Shelf life (days): </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='ishelf'> days</p>
 			<p><strong>Arrival date: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='date' name='iarrival'></p>
 			<p><strong>Current amount: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='iamount' ></p>
-			<p><strong>Package cost: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='icost'></p>
+			<p><strong>Package cost: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' step='0.01' name='icost'></p>
 			<p><input type='submit' value='Create new item' name='inventInsert'></form>
 			</p></div>";
 		echo "</table></div>";
