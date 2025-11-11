@@ -121,6 +121,7 @@
 		}
 		
 		//Inventory management section
+		//TO DO - need to map the QTY of boxes to the Product QTY so need to update 2 tables. -- DONE
 		if(isset($_POST['inventUpdate']) && isset($_POST['inid'])){
 			$inid = $_POST['inid'];
 			$iname = $_POST['iname'];
@@ -134,6 +135,10 @@
 			$updateInventStmt = "UPDATE inventory SET Name='$iname', PrdtMapUID='$pid', Barcode='$iBarcode', QtyPerBox='$iQty', Shelflife='$iShelflife', ArrivalDate='$iArrival', Amount='$iAmount', Cost='$iCost' WHERE UID='$inid'";
 			$updateInventPrepare = $conn->prepare($updateInventStmt);
 			$updateInventPrepare->execute();
+			$prdQty = $iQty*$iAmount;
+			$updatePrdQty = "UPDATE products SET Quantity='$prdQty' WHERE UID='$pid'";
+			$updatePrdQtyPrepare = $conn->prepare($updatePrdQty);
+			$updatePrdQtyPrepare->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
 				<h3>Inventory item updated.</h3>
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
@@ -151,6 +156,10 @@
 			$createInventStmt = "INSERT INTO inventory (UID, Name, PrdtMapUID, Barcode, QtyPerBox, Cost, Shelflife, ArrivalDate, Amount) VALUES ('$inid', '$iname', '$pid', '$iBarcode', '$iQty', '$iCost', '$iShelflife', '$iArrival', '$iAmount')";
 			$createInventPrepare = $conn->prepare($createInventStmt);
 			$createInventPrepare->execute();
+			$prdQty = $iQty*$iAmount;
+			$updatePrdQty = "UPDATE products SET Quantity='$prdQty' WHERE UID='$pid'";
+			$updatePrdQtyPrepare = $conn->prepare($updatePrdQty);
+			$updatePrdQtyPrepare->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
 				<h3>Inventory item created.</h3>
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";

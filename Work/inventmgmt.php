@@ -5,7 +5,7 @@
 		echo "<h3>Inventory management</h3>
 			<div class='postlink'>
 			<table width='100%' align='center'>
-			<tr><th>Item</th><th>Product map</th><th>Qty per item</th><th>Arrival Date</th><th>Shelf life</th><th>Cost</th><th>Details</th></tr>";
+			<tr><th>Item</th><th>Product map</th><th>Qty per item</th><th>Current Amount</th><th>Arrival Date</th><th>Shelf life</th><th>Cost</th><th>Details</th></tr>";
 			//Pre-fetch the product names and IDs
 			$productquery = 'SELECT * FROM products';
 			$prodstmt = $conn->prepare($productquery);
@@ -33,11 +33,11 @@
 					echo "<tr style='background-color:#eaeaea;'>";
 					$linecnt += 1;
 				}
-				else { 
+				else {
 					echo "<tr>";
 					$linecnt += 1;
 				}
-				echo "<td>$iname</td><td>$iPrdMap</td><td>$iQty</td><td>$iArrival</td><td>$iShelflife</td><td>$iCost</td><td><button onclick='popupdisplay(\"$inid\")'>Details</button></td></tr>";
+				echo "<td>$iname</td><td>$iPrdMap</td><td>$iQty</td><td>$iAmount</td><td>$iArrival</td><td>$iShelflife</td><td>$iCost</td><td><button onclick='popupdisplay(\"$inid\")'>Details</button></td></tr>";
 				//Edit user pop-up
 				echo "<div class='popupwindow' style='visibility: hidden;' id='$inid'><img class='closepopup' onclick='popupdisplay(\"$inid\")' src='close.png'>
 					<form method='post' action='submit.php'>

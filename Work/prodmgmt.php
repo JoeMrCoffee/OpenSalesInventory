@@ -5,7 +5,7 @@
 		echo "<h3>Product management</h3>
 			<div class='postlink'>
 			<table width='100%' align='center'>
-			<tr><th>Name</th><th>Description</th><th>Price</th><th>Cost</th><th>Edit</th></tr>";
+			<tr><th>Name</th><th>Description</th><th>Price</th><th>Cost</th><th>Quantity</th><th>Edit</th></tr>";
 		
 		$productquery = 'SELECT * FROM products';
 		$prodstmt = $conn->prepare($productquery);
@@ -30,7 +30,7 @@
 				echo "<tr>";
 				$prodcnt += 1;
 			}
-			echo "<td>$pname</td><td width=75% >".substr($pdesc,0,200)." ...</td><td>$ $pprice</td><td>$ $pcost</td><td><button onclick='popupdisplay(\"$pid\")'>Edit</button></td></tr>";
+			echo "<td>$pname</td><td width=65% >".substr($pdesc,0,200)." ...</td><td>$ $pprice</td><td>$ $pcost</td><td>$pquant</td><td><button onclick='popupdisplay(\"$pid\")'>Edit</button></td></tr>";
 			//Edit user pop-up
 			echo "<div class='popupwindow' style='visibility: hidden;' id='$pid'><img class='closepopup' onclick='popupdisplay(\"$pid\")' src='close.png'>
 				<form method='post' action='submit.php' enctype='multipart/form-data'>
@@ -42,6 +42,8 @@
 				<p><strong>Product specifications: </strong><br><br><textarea class='giantinput' name='pspecs'>$pspecs</textarea></p>
 				<p><strong>Product price: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' step='0.01' name='pprice' value='$pprice'></p>
 				<p><strong>Product cost: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' step='0.01' name='pcost' value='$pcost'></p>
+				<p><strong>Current amount: </strong>&nbsp;&nbsp;&nbsp;&nbsp;$pquant<br><br>
+				<i>This is updated automatically from the inventory page.</i></p>
 				<p><input type='submit' value='Update' name='prodUpdate'></form>
 				<form method='post' action='submit.php' class='buttontgthr'><input type='hidden' value='$pid' name='pid'>&nbsp;&nbsp;&nbsp;
 					<input type='submit' value='Delete' name='prodDelete' onclick='return confirmfunction()'>
