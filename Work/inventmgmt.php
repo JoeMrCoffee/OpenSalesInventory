@@ -61,7 +61,40 @@
 						<input type='submit' value='Delete' name='inventDelete' onclick='return confirmfunction()'>
 					</form></p></div>";
 			}
-		//The below needs to be completely changed based on the inventory options above
+			
+		//Add an existing inventory item via barcode
+		echo "<button class='barcode' onclick='popupdisplay(\"barcode\")'><img src='barcodeImagewhite.png' width='55px'></button>";
+		if(isset($_POST['barcosrch'])){
+			$searchquery = $_POST['barcosrch'];
+			$barcoquery = "SELECT * FROM inventory WHERE Barcode LIKE '%$searchquery%'";
+			$barcostmt = $conn->prepare($barcoquery);
+			$barcostmt->execute();
+			$itemlist = $barcostmt->fetchAll(PDO::FETCH_ASSOC);
+			foreach( $itemlist as $barcoitem) {
+				$barcoid = $barcoitem['UID'];
+				$barconame = $barcoitem['Name'];
+				$barcoPrdMap = $barcoitem['PrdtMapUID'];
+				$barcoQty = $barcoitem['QtyPerBox'];
+				$barcoAmt = $barcoitem['Amount'];
+			}
+			echo "<div class='popupwindow' style='visibility: visible;' id='barresult'>
+				<img class='closepopup' onclick='popupdisplay(\"barresult\")' src='close.png'><br>
+				<form method='post' action='submit.php'>
+				<input type='hidden' name='barcoid' value='$barcoid'>
+				<input type='hidden' name='barcoAmt' value='$barcoAmt'>
+				<p><strong>Inventory item:</strong> $barconame</p><input type='hidden' name='barconame' value='$barconame'>
+				<p><strong>Mapping product:</strong> $barcoPrdMap</p><input type='hidden' name='pid' value='$barcoPrdMap'>
+				<p><strong>Quantity per box:</strong> $barcoQty</p><input type='hidden' name='barcoQty' value='$barcoQty'>
+				<p><strong>Number to add:</strong> <input type='number' name='barconum'></p>
+				<p><input type='submit' value='Add amount' name='inventBCinsert'></p></form></div>";
+		}
+		echo "<div class='popupwindow' style='visibility: hidden;' id='barcode'>
+			<img class='closepopup' onclick='popupdisplay(\"barcode\")' src='close.png'><br>
+			<form method='post' action='".$_SERVER['PHP_SELF']."'>
+			<input name='barcosrch' type='text' class='search' placeholder='Scan barcode to search'>  
+			<input class='search' type='submit' value='SEARCH' ></form></div>";
+		
+		//Create a new inventory item
 		echo "<img src='addObject.png' class='addObject' onclick='popupdisplay(\"newprod\")'>
 			<div class='popupwindow' style='visibility: hidden;' id='newprod'><img class='closepopup' onclick='popupdisplay(\"newprod\")' src='close.png'>
 			<form method='post' action='submit.php'>

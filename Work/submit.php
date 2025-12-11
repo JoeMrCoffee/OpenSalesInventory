@@ -1,7 +1,6 @@
 <?php 
 	include 'titlebar.php';
 	if ($userlvl == "admin" && $validity == "valid") {
-		
 		//User Management submissions
 		if(isset($_POST['uid']) && isset($_POST['userUpdate'])){
 			$uname = $_POST['uname'];
@@ -132,9 +131,11 @@
 			$iArrival = $_POST['iarrival'];
 			$iCost = $_POST['icost'];
 			$iAmount = $_POST['iamount'];
+			//update the inventory table
 			$updateInventStmt = "UPDATE inventory SET Name='$iname', PrdtMapUID='$pid', Barcode='$iBarcode', QtyPerBox='$iQty', Shelflife='$iShelflife', ArrivalDate='$iArrival', Amount='$iAmount', Cost='$iCost' WHERE UID='$inid'";
 			$updateInventPrepare = $conn->prepare($updateInventStmt);
 			$updateInventPrepare->execute();
+			//Sync with the product amounts
 			$prdQty = $iQty*$iAmount;
 			$updatePrdQty = "UPDATE products SET Quantity='$prdQty' WHERE UID='$pid'";
 			$updatePrdQtyPrepare = $conn->prepare($updatePrdQty);
@@ -172,6 +173,29 @@
 			echo "<h3>Submit</h3><div class='postlink'>
 				<h3>Inventory item deleted.</h3>
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
+		}
+		else if(isset($_POST['inventBCinsert'])){
+			$barcoid = $_POST['barcoid'];
+			$barconame = $_POST['barconame'];
+			$barconum = $_POST['barconum'];
+			$barcoAmt = $_POST['barcoAmt'];
+			$barcoQty = $_POST['barcoQty'];
+			$pid = $_POST['pid'];
+			$finalNum = $barcoAmt+$barconum;
+			//update the inventory table
+			$barcoAddQuery = "UPDATE inventory SET Amount='$finalNum' WHERE UID='$barcoid'";
+			$barcoAddStmt = $conn->prepare($barcoAddQuery);
+			$barcoAddStmt->execute();
+			//Sync with the product amounts
+			$prdQty = $barcoQty*$finalNum;
+			$updatePrdQty = "UPDATE products SET Quantity='$prdQty' WHERE UID='$pid'";
+			$updatePrdQtyPrepare = $conn->prepare($updatePrdQty);
+			$updatePrdQtyPrepare->execute();
+			echo "<h3>Submit</h3><div class='postlink'>
+				<h3>Barcode amount added to Inventory </h3>
+				<p><a href='inventmgmt.php'><button>< BACK</button></a></p>
+				</div>";
+		
 		}
 	}
 

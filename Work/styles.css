@@ -18,7 +18,8 @@ td {
     border-spacing: 0;
 }
 
-td.search { text-align: center; }
+td.
+ { text-align: center; }
 
 table { border-spacing: 0; }
 
@@ -262,6 +263,14 @@ select.config {
 	bottom: 25px;
 	right: 25px;
 	max-width: 40px;
+
+}
+
+.barcode {
+	position: absolute;
+	bottom: 25px;
+	right: 75px;
+	
 
 }
 
