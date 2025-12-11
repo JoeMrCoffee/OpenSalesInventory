@@ -195,6 +195,10 @@
 				<h3>Barcode amount added to Inventory </h3>
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p>
 				</div>";
+		//TO DO
+		//Still need to figure out how to deal with the arrival date as that is a single field, but we have 
+		//potentially multiple boxes and arrival dates... 
+		//Something to think about....
 		
 		}
 	}
