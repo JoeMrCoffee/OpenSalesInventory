@@ -23,7 +23,7 @@ https://www.youtube.com/@opensourcetechtraining64
 - Create a product view page -- ready, but the design may be adjusted later
 - Allow for detailed product view -- Basic version ready
 - Manage inventory -- Base ready, but need to add some more intelligence to map to the product + item QTY management
-- Allow barcode scanning to more quickly add for existing items -- TBD
+- Allow barcode scanning to more quickly add for existing items -- Ready - but need to adjust to handle different available dates
 - Manage orders -- TBD
 - Create a search bar for finding products and filtering types -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
