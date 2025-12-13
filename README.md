@@ -27,6 +27,8 @@ https://www.youtube.com/@opensourcetechtraining64
 - Manage orders -- TBD
 - Create a search bar for finding products and filtering types -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
+- Update the UI particularly for the product detailed views -- TBD
+	- Currently quite bland, likely needed with the order flow when it is ready.
 - Allow for site admins to customize the look and branding of the website -- TBD
 
 ### Out-of-scope
