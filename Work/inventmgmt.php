@@ -11,8 +11,7 @@
 			$prodstmt = $conn->prepare($productquery);
 			$prodstmt->execute();
 			//Fetch the product data
-			$prodlist = $prodstmt->fetchAll(PDO::FETCH_ASSOC);
-						
+			$prodlist = $prodstmt->fetchAll(PDO::FETCH_ASSOC);				
 			//Inventory query
 			$inventquery = 'SELECT * FROM inventory';
 			$inventstmt = $conn->prepare($inventquery);
@@ -37,9 +36,9 @@
 					echo "<tr>";
 					$linecnt += 1;
 				}
-				echo "<td>$iname</td><td>$iPrdMap</td><td>$iQty</td><td>$iAmount</td><td>$iArrival</td><td>$iShelflife</td><td>$iCost</td><td><button onclick='popupdisplay(\"$inid\")'>Details</button></td></tr>";
+				echo "<td>$iname</td><td>$iPrdMap</td><td>$iQty</td><td>$iAmount</td><td>$iArrival</td><td>$iShelflife</td><td>$iCost</td><td><button onclick='popupdisplay(\"$inid$iArrival\")'>Details</button></td></tr>";
 				//Edit user pop-up
-				echo "<div class='popupwindow' style='visibility: hidden;' id='$inid'><img class='closepopup' onclick='popupdisplay(\"$inid\")' src='close.png'>
+				echo "<div class='popupwindow' style='visibility: hidden;' id='$inid$iArrival'><img class='closepopup' onclick='popupdisplay(\"$inid$iArrival\")' src='close.png'>
 					<form method='post' action='submit.php'>
 					<input type='hidden' value='$inid' name='inid'>
 					<p><strong>Package name: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='iname' value='$iname'></p>
@@ -64,9 +63,10 @@
 			
 		//Add an existing inventory item via barcode
 		echo "<button class='barcode' onclick='popupdisplay(\"barcode\")'><img src='barcodeImagewhite.png' width='55px'></button>";
+		//search result of the barcode
 		if(isset($_POST['barcosrch'])){
-			$searchquery = $_POST['barcosrch'];
-			$barcoquery = "SELECT * FROM inventory WHERE Barcode LIKE '%$searchquery%'";
+			$barcosrch = $_POST['barcosrch'];
+			$barcoquery = "SELECT * FROM inventory WHERE Barcode LIKE '%$barcosrch%'";
 			$barcostmt = $conn->prepare($barcoquery);
 			$barcostmt->execute();
 			$itemlist = $barcostmt->fetchAll(PDO::FETCH_ASSOC);
@@ -76,20 +76,30 @@
 				$barcoPrdMap = $barcoitem['PrdtMapUID'];
 				$barcoQty = $barcoitem['QtyPerBox'];
 				$barcoAmt = $barcoitem['Amount'];
+				$barcoShelfLife = $barcoitem['Shelflife'];
+				$barcoArrivalDate = date('Y-m-d');
+				$barcoCost = $barcoitem['Cost'];
+				
 			}
 			echo "<div class='popupwindow' style='visibility: visible;' id='barresult'>
 				<img class='closepopup' onclick='popupdisplay(\"barresult\")' src='close.png'><br>
 				<form method='post' action='submit.php'>
 				<input type='hidden' name='barcoid' value='$barcoid'>
 				<input type='hidden' name='barcoAmt' value='$barcoAmt'>
+				<input type='hidden' name='barCode' value='$barcosrch'>
 				<p><strong>Inventory item:</strong> $barconame</p><input type='hidden' name='barconame' value='$barconame'>
 				<p><strong>Mapping product:</strong> $barcoPrdMap</p><input type='hidden' name='pid' value='$barcoPrdMap'>
 				<p><strong>Quantity per box:</strong> $barcoQty</p><input type='hidden' name='barcoQty' value='$barcoQty'>
+				<p><strong>Shelf life:</strong> $barcoShelfLife</p><input type='hidden' name='barcoShelfLife' value='$barcoShelfLife'>
+				<p><strong>Cost per box:</strong> $barcoCost</p><input type='hidden' name='barcoCost' value='$barcoCost'>
+				<p><strong>Arrival date:</strong> <input type='date' name='barcoArrivalDate' value='$barcoArrivalDate'></p>
 				<p><strong>Number to add:</strong> <input type='number' name='barconum'></p>
 				<p><input type='submit' value='Add amount' name='inventBCinsert'></p></form></div>";
 		}
+		//Barcode search bar
 		echo "<div class='popupwindow' style='visibility: hidden;' id='barcode'>
 			<img class='closepopup' onclick='popupdisplay(\"barcode\")' src='close.png'><br>
+			<p>If this inventory package item already exists, simply scan the barcode <br>to search for and add the quantity</p>
 			<form method='post' action='".$_SERVER['PHP_SELF']."'>
 			<input name='barcosrch' type='text' class='search' placeholder='Scan barcode to search'>  
 			<input class='search' type='submit' value='SEARCH' ></form></div>";
@@ -123,4 +133,11 @@
 		</script>";
 	
 	include 'footer.php';
+	
+	//TO DO
+	//Create a filter function to sum up all the inventory items and show them in different ways
+	// Same name
+	// Same barcode
+	// Same arrival date
+	// Sum the total amounts by same barcode
 ?>

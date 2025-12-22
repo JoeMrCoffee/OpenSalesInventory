@@ -175,15 +175,20 @@
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p></div>";
 		}
 		else if(isset($_POST['inventBCinsert'])){
-			$barcoid = $_POST['barcoid'];
+			$barCode = $_POST['barCode'];
 			$barconame = $_POST['barconame'];
 			$barconum = $_POST['barconum'];
+			//Need to have a new inventory ID for each new barcode scan
+			$barcoid = $barconame."".date("Ymd")."".rand(10,100)."";
 			$barcoAmt = $_POST['barcoAmt'];
 			$barcoQty = $_POST['barcoQty'];
+			$barcoShelfLife = $_POST['barcoShelfLife'];
+			$barcoArrivalDate = $_POST['barcoArrivalDate'];
+			$barcoCost = $_POST['barcoCost'];
 			$pid = $_POST['pid'];
 			$finalNum = $barcoAmt+$barconum;
-			//update the inventory table
-			$barcoAddQuery = "UPDATE inventory SET Amount='$finalNum' WHERE UID='$barcoid'";
+			//insert the new item and arrival date into the inventory table
+			$barcoAddQuery = "INSERT INTO inventory (UID, Name, PrdtMapUID, Barcode, QtyPerBox, Cost, Shelflife, ArrivalDate, Amount) VALUES ('$barcoid', '$barconame', '$pid', '$barCode', '$barcoQty', '$barcoCost', '$barcoShelfLife', '$barcoArrivalDate', '$barconum')";
 			$barcoAddStmt = $conn->prepare($barcoAddQuery);
 			$barcoAddStmt->execute();
 			//Sync with the product amounts
@@ -195,11 +200,7 @@
 				<h3>Barcode amount added to Inventory </h3>
 				<p><a href='inventmgmt.php'><button>< BACK</button></a></p>
 				</div>";
-		//TO DO
-		//Still need to figure out how to deal with the arrival date as that is a single field, but we have 
-		//potentially multiple boxes and arrival dates... 
-		//Something to think about....
-		
+
 		}
 	}
 
