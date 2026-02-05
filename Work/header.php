@@ -60,6 +60,18 @@
 			`Shelflife` int(10) DEFAULT NULL,
 			`ArrivalDate` date
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
+			"CREATE TABLE `orders` (
+			`UID` varchar(100),
+			`Username` varchar(100),
+			`UserUID` varchar(100),
+			`PrdtMapUID` varchar(100),
+			`Amount` int(10) DEFAULT 0,
+			`Price` decimal(8,2) DEFAULT NULL,
+			`Cost` decimal(8,2) DEFAULT NULL,
+			`OrderDate` date,
+			`ShippingDate` date DEFAULT NULL,
+			`Invoice` text DEFAULT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
 		];
 		foreach($create as $newtable){
 			$conn->exec($newtable);
