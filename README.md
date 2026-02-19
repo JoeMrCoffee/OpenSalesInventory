@@ -24,7 +24,12 @@ https://www.youtube.com/@opensourcetechtraining64
 - Allow for detailed product view -- Basic version ready
 - Manage inventory -- Base ready, but need to add some more intelligence to map to the product + item QTY management
 - Allow barcode scanning to more quickly add for existing items -- Ready
-- Manage orders -- TBD
+- Manage orders -- in progress
+	- TO DO:
+		- complete an order placement to the database
+		- Add users' pending and past orders
+		- Create an Order management page
+		- Link order fulfillment with inventory reduction
 - Create a search bar for finding products and filtering types -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Update the UI particularly for the product detailed views -- TBD
@@ -48,7 +53,7 @@ User: admin
 PWD: admin123456
 ```
 
-This should be changed and can be after first login.
+This should and can be changed after first login.
 
 ### Adjust the defaults
 
