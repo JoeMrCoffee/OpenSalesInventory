@@ -82,6 +82,10 @@ button:hover { box-shadow: 1px 1px 3px gray; }
     margin-right: 20px;
 }
 
+.sameline {
+	float:left;
+}
+
 input[type=submit]{
     min-width: 50px;
     background-color: #2eabcc;
@@ -251,6 +255,19 @@ select.config {
     border: 2px solid #c2c2c2;
     position: relative;
     min-height: 500px;
+}
+
+.ordersummary {
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    font-family: Sans-serif;
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 5px;
+    border: 2px solid #c2c2c2;
+    position: relative;
+    min-height: 200px;
+    margin-bottom: 20px;
 }
 
 .updateprod {

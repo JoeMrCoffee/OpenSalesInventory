@@ -25,6 +25,6 @@
 	</td>
 	<td class='titleimage' width='100px'>LOGO</td>
 	<td style='min-width: 87%;'></td>
-	<td><img src='shoppingcart.png' style='max-width: 30px;' title='View shopping cart'></td>
+	<td><a href='shoppingcart.php'><img src='shoppingcart.png' style='max-width: 30px;' title='View shopping cart'></a></td>
 </tr></table><br><br><br>
 <table width='72%' align='center' cellspacing='0' cellpadding='1'><tr><td>

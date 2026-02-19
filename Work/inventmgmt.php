@@ -37,7 +37,7 @@
 					$linecnt += 1;
 				}
 				echo "<td>$iname</td><td>$iPrdMap</td><td>$iQty</td><td>$iAmount</td><td>$iArrival</td><td>$iShelflife</td><td>$iCost</td><td><button onclick='popupdisplay(\"$inid$iArrival\")'>Details</button></td></tr>";
-				//Edit user pop-up
+				//Edit inventory item pop-up
 				echo "<div class='popupwindow' style='visibility: hidden;' id='$inid$iArrival'><img class='closepopup' onclick='popupdisplay(\"$inid$iArrival\")' src='close.png'>
 					<form method='post' action='submit.php'>
 					<input type='hidden' value='$inid' name='inid'>
