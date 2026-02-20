@@ -15,12 +15,13 @@
 			$oamount = $_POST['oamount'];
 			//add items to the shopping cart
 			$shopcart[] = ['pid' => $pid, 'amount' => $oamount];
+
 		
 		}
 		//print_r($shopcart);
 		//Open orders section
 		echo "<h3>Open orders:</h3>";
-		
+		$idcnt = 0; //create a unique ID value per shopcart item - used with the javascript function
 		foreach($shopcart as $shopitem){
 			echo "<div class='ordersummary'>
 				<form method='post' action='put.php'> 
@@ -51,26 +52,28 @@
 				<p>Product name: $pname</p><input type='hidden' name='pname' value='$pname'>
 				<p>Description:<br>$pdesc</p>
 				<p>Unit price: $pprice</p><input type='hidden' value='$pprice' id='".$pid."price'>
-				<p>Order amount: <input type='number' name='oamount' id='".$pid."amt' value='$oamount' onchange='totalPrice($pprice,\"$pid\")'></p>
-				<div><strong>Subtotal: <div class='buttontgthr' id='$pid'>$ $subtotal</div></strong></div><br>
-				<p><input type='submit' value='Place order' onclick='return confirmfunction()' name='newOrder'></p></div>";
+				<p>Order amount: <input type='number' name='oamount' id='".$idcnt."amt' value='$oamount' onchange='totalPrice($pprice,\"$idcnt\")'></p>
+				<div><strong>Subtotal: <div class='buttontgthr' id='$idcnt'>$ $subtotal</div></strong></div><br>
+				<p><input type='submit' value='Place order' name='placeorder' onclick='return confirmfunction()' name='newOrder'></p></form></div>";
+				
+			$idcnt++;
 				
 		}
 		
 		//update the session
 		$_SESSION['shopcart'] = $shopcart;
 	}
-	else { echo "<p>Please login  and add products to view the shopping cart.</p>"; }
+	else { echo "<h3>Please login and add products to view the shopping cart.</h3>"; }
 	include 'footer.php';
 ?>
 <script>
 	function totalPrice(pprice, subid){
-		console.log(subid);
+		//console.log(subid);
 		let subtotalid = subid;
 		let amtid = ""+subid+"amt";
 		oamount = document.getElementById(amtid).value;
-		console.log(amtid);
-		console.log(pprice);
+		//console.log(amtid);
+		//console.log(pprice);
 		var subtotal = pprice*oamount;
 		document.getElementById(subtotalid).innerHTML = ' $ '+subtotal;
 	}
