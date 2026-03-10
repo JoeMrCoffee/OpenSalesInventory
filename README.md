@@ -26,11 +26,11 @@ https://www.youtube.com/@opensourcetechtraining64
 - Create a product view page -- ready, but the design may be adjusted later
 - Allow for detailed product view -- Basic version ready
 - Manage inventory -- Base ready, but need to add some more intelligence to map to the product + item QTY management
-- Allow barcode scanning to more quickly add for existing items -- Ready
+- Allow barcode scanning to more quickly add for existing items -- ready
 - Manage orders -- in progress
 	- TO DO:
-		- complete an order placement to the database
-		- Add users' pending and past orders
+		- complete an order placement to the database -- ready
+		- Add users' pending and past orders -- partial
 		- Create an Order management page
 		- Link order fulfillment with inventory reduction
 - Create a search bar for finding products and filtering types -- TBD
