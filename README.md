@@ -6,6 +6,9 @@ Simple customizable website for organizing and managing products and inventory.
 
 The primary goal is to create something customizable so users can easily bring up a web site, customize it with basic themeing (logo, site name, colors, etc), and then create products, allow users to view and select them, manage inventory, and also orders. 
 
+#### Current progress:
+<img src='OverviewAnimation.gif' width='750px'>
+
 ## WORK IN PROGRESS
 This is currently ***very much a work in progress*** to serve as a teaching / learning platform to go alongside some tutorials about programming and developing a websiste with PHP and up-to-date coding practices using the PDO MySQL connector to access the database. 
 
