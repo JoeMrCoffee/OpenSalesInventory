@@ -53,12 +53,14 @@
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
 			"CREATE TABLE `inventory` (
 			`UID` varchar(100),
+			`Name` varchar(100),
 			`PrdtMapUID` varchar(100),
 			`Barcode` varchar(200),
 			`QtyPerBox` int(10) DEFAULT NULL,
 			`Cost` decimal(10,2) DEFAULT NULL,
 			`Shelflife` int(10) DEFAULT NULL,
-			`ArrivalDate` date
+			`ArrivalDate` date,
+			`Amount` int(10) DEFAULT 0
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
 			"CREATE TABLE `orders` (
 			`UID` varchar(100),
