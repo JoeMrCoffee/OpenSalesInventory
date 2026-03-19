@@ -30,9 +30,9 @@ https://www.youtube.com/@opensourcetechtraining64
 - Manage orders -- in progress
 	- TO DO:
 		- complete an order placement to the database -- ready
-		- Add users' pending and past orders -- partial
-		- Create an Order management page
-		- Link order fulfillment with inventory reduction
+		- Add users' pending and past orders -- ready
+		- Create an Order management page -- ready
+		- Link order fulfillment with inventory reduction - TBD
 - Create a search bar for finding products and filtering types -- TBD
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Update the UI particularly for the product detailed views -- TBD
