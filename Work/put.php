@@ -15,7 +15,9 @@
 			$userupdatestmt = $conn->prepare($updateuser);
 			$userupdatestmt->execute();
 			echo "<h3>Submit</h3><div class='postlink'>
-				<h3>User data updated.</h3></div>";
+				<h3>User data updated.</h3>
+				<p>If name or password was changed, please return to the login and re-authenticate <a href='login.php'>LOGIN</a></p>
+				</div>";
 		}
 		else if(isset($_POST['accountDelete'])){
 			$uid = $_POST['uid'];
@@ -25,8 +27,52 @@
 			echo "<h3>Submit</h3><div class='postlink'>
 				<h3>Your account has been deleted.</h3></div>";
 		}
+		if(isset($_POST['placeorder'])){
+			//TO DO grab all the variables and enter the order
+			$itemid = $_POST['itemid'];
+			$pname = $_POST['pname'];
+			$pprice = $_POST['pprice'];
+			$oamount = $_POST['oamount'];
+			$pid = $_POST['pid'];
+			$userid = $_POST['userid'];
+			$username = $_POST['username'];
+			$orderid = "ORD".$username."".date("Ymdh")."".rand(10,100)."";
+			$orderDate = date('Ymd');
+			$ordPrice = $pprice*$oamount;
+			//look up the product cost			
+			$prodLookup = "SELECT * FROM products WHERE UID='$pid'";
+			$prodLookstmt = $conn -> prepare($prodLookup);
+			$prodLookstmt->execute();
+			$prodlist = $prodLookstmt->fetchAll(PDO::FETCH_ASSOC);
+			foreach( $prodlist as $prod){
+				$pcost = $prod['Cost'];
+			}
+			$ordCost = $pcost*$oamount;
+			//Insert the order to the database
+			//TO DO
+			//Need to create an invoice value
+			$neworder = "INSERT INTO orders (UID, Username, UserUID, PrdtMapUID, Amount, Price, Cost, OrderDate) VALUES ('$orderid', '$username', '$userid', '$pid', '$oamount', '$ordPrice', '$ordCost', '$orderDate')";
+			$neworderstmt = $conn->prepare($neworder);
+			$neworderstmt->execute();
+			
+			//unset the Session
+			$shopcart = $_SESSION['shopcart'];
+			unset($shopcart[$itemid]);
+			$_SESSION['shopcart'] = $shopcart;
+			
+			//Order details - perhaps up the formatting
+			echo "<h3>Order placed</h3><div class='postlink'>
+				<p><strong>Your order has been placed!</strong><br>
+				Order ID: $orderid.<br>
+				Order date: $$orderDate<br>
+				Item ordered: $pid<br>
+				Amount: $oamount<br>
+				Total cost: $ordPrice<br>
+				If you have any questions, please contact us wit your order ID. Thank you.</p></div>";
+			
+		}
 	}
-	else { echo "<h3>Invalid user, please login as admin.</h3>"; } 
+	else { echo "<h3>Invalid user, please first login.</h3>"; } 
 	
 	include 'footer.php';
 ?>

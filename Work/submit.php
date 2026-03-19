@@ -202,6 +202,32 @@
 				</div>";
 
 		}
+		//Need to finish this and add an Invoice table
+		//TO DO have a company / organization address
+		if(isset($_POST['updateOrder'])){
+			$orderid = $_POST['orderid'];
+			$shipDate = $_POST['shipdate'];
+			$orderuser = $_POST['username'];
+			$orderuid = $_POST['userid'];
+			$orderamt = $_POST['orderamt'];
+			$orderprice = $_POST['orderprice'];
+			$orderprod = $_POST['orderprod'];
+			$invoice = "<p><strong>Invoice</strong></p>
+				<p><strong>Order ID: </strong>$orderid</p>
+				<p><strong>Date: </strong>$shipDate</p>
+				<p><strong>User: </strong>$orderuser</p>
+				<p><strong>User ID: </strong>$orderuid</p>
+				<p><strong>Product ID: </strong>$orderprod</p>
+				<p><strong>Amount: </strong>$orderamt</p>
+				<p><strong>Total price: </strong>$orderprice</p>";
+			$orderupdquery = "UPDATE orders SET ShippingDate='$shipDate', Invoice='$invoice' WHERE UID='$orderid'";
+			$orderupdPrepare = $conn->prepare($orderupdquery);
+			$orderupdPrepare->execute();
+			echo "<h3>Submit</h3><div class='postlink'>
+				<h3>Order confirmed and shipment date set.</h3>
+				<p><a href='ordermgmt.php'><button>< BACK</button></a></p>
+				</div>";
+		}
 	}
 
 	else { echo "<h3>Invalid user, please login as admin.</h3>"; } 

@@ -18,7 +18,8 @@
 	echo "<br>-----------ADMIN------------<br>
         <a href='usermgmt.php' class='titlelink dropdownlink'>USER MANAGEMENT</a><br>
         <a href='prodmgmt.php' class='titlelink dropdownlink'>PRODUCT MANAGEMENT</a><br>
-        <a href='inventmgmt.php' class='titlelink dropdownlink'>INVENTORY MANAGEMENT</a><br>";
+        <a href='inventmgmt.php' class='titlelink dropdownlink'>INVENTORY MANAGEMENT</a><br>
+        <a href='ordermgmt.php' class='titlelink dropdownlink'>ORDER MANAGEMENT</a><br>";
     }
 ?>
 	</div>
