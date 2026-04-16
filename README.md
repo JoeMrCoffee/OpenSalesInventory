@@ -6,7 +6,7 @@ Simple customizable website for organizing and managing products and inventory.
 
 The primary goal is to create something customizable so users can easily bring up a web site, customize it with basic themeing (logo, site name, colors, etc), and then create products, allow users to view and select them, manage inventory, and also orders. 
 
-#### Current progress:
+### Current progress:
 <img src='OverviewAnimation.gif' width='750px'>
 
 ## WORK IN PROGRESS
@@ -33,14 +33,15 @@ https://www.youtube.com/@opensourcetechtraining64
 		- Add users' pending and past orders -- ready
 		- Create an Order management page -- ready
 		- Link order fulfillment with inventory reduction - TBD
-- Create a search bar for finding products and filtering types -- ready - search by product name and description
+- Create a search bar for finding products and filtering types -- ready
+  *search by product name and description
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Update the UI particularly for the product detailed views -- TBD
 	- Currently quite bland, likely needed with the order flow when it is ready.
 - Allow for site admins to customize the look and branding of the website -- TBD
 
 ### Out-of-scope
-Payment processing is currently not planned, but should be possible to include with 3rd party APIs, but to my knowledge all payment processing tools require some proof of an organization in order to help process biling and cash flow. Therefore, payment processing will be out-of-scope for this relatively small project until I have more core parts complete, and might be something that users will need to alway re-implement with their organization-specific API key from the payment processing provider.
+Payment processing is currently not planned, but should be possible to include with 3rd party APIs. To my knowledge all payment processing tools require some proof of an organization in order to help process biling and cash flow. Therefore, payment processing will be out-of-scope for this relatively small project until I have more core parts complete, and might be something that users will need to alway re-implement with their organization-specific API key from the payment processing provider.
 
 ## Bring up
 To bring up the website there is a reference Docker compose and Dockerfile in the repo that should work simply by running the following command from the same directory as where the repo clone is located:
