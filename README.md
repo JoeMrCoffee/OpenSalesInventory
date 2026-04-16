@@ -33,7 +33,7 @@ https://www.youtube.com/@opensourcetechtraining64
 		- Add users' pending and past orders -- ready
 		- Create an Order management page -- ready
 		- Link order fulfillment with inventory reduction - TBD
-- Create a search bar for finding products and filtering types -- TBD
+- Create a search bar for finding products and filtering types -- ready - search by product name and description
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Update the UI particularly for the product detailed views -- TBD
 	- Currently quite bland, likely needed with the order flow when it is ready.
