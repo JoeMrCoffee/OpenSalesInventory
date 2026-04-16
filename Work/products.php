@@ -12,7 +12,7 @@
 	
 	//saerch bar
 	echo "<div class='search'><form method='post' action='".$_SERVER['PHP_SELF']."'>
-		<input name='searchitem' type='text' class='search' placeholder='Scan barcode to search'>  
+		<input name='searchitem' type='text' class='search' placeholder='What are you looking for?'>  
 		<input class='search' type='submit' value='SEARCH' name='itemsearch'></form></div>";
 	
 	//Display all of the products
