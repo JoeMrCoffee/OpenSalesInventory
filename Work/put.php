@@ -68,7 +68,7 @@
 				Item ordered: $pid<br>
 				Amount: $oamount<br>
 				Total cost: $ordPrice<br>
-				If you have any questions, please contact us wit your order ID. Thank you.</p></div>";
+				If you have any questions, please contact us with your order ID. Thank you.</p></div>";
 			
 		}
 	}
