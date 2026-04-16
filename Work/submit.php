@@ -186,6 +186,9 @@
 			$barcoArrivalDate = $_POST['barcoArrivalDate'];
 			$barcoCost = $_POST['barcoCost'];
 			$pid = $_POST['pid'];
+			//TO DO 
+			//This statement needs to be updated so that it grabs the existing product amount and adds to it rather than just 
+			//The total inventory amounts * quantity
 			$finalNum = $barcoAmt+$barconum;
 			//insert the new item and arrival date into the inventory table
 			$barcoAddQuery = "INSERT INTO inventory (UID, Name, PrdtMapUID, Barcode, QtyPerBox, Cost, Shelflife, ArrivalDate, Amount) VALUES ('$barcoid', '$barconame', '$pid', '$barCode', '$barcoQty', '$barcoCost', '$barcoShelfLife', '$barcoArrivalDate', '$barconum')";
@@ -227,6 +230,42 @@
 				<h3>Order confirmed and shipment date set.</h3>
 				<p><a href='ordermgmt.php'><button>< BACK</button></a></p>
 				</div>";
+			// TO DO: Need to drop the inventory amount with a smart rule
+			//prime the amount variables
+			$prodamt = 0;
+			$inventamt = 0; //aount of inventory boxes
+			$inventqty = 0; //products per inventory box
+			//get the existing product amount
+			$proddetails = "SELECT * FROM products WHERE UID='$orderprod'";
+			$getproddetails = $conn->prepare($proddetails);
+			$getproddetails->execute();
+			$getproductdetails = $getproddetails -> fetchAll(PDO::FETCH_ASSOC);
+			foreach( $getproductdetails as $proddtls){
+				$prodamt = $proddtls['Quantity'];
+			}
+			//Update the amount to subtract the shipment
+			$newprodamt = $prodamt-$orderamt;
+			$updateprodamt = "UPDATE products SET Quantity='$newprodamt' WHERE UID='$orderprod'";
+			$prodquery = $conn->prepare($updateprodamt);
+			$prodquery -> execute();
+			// Reference the inventory
+			/*
+			$inventdetails = "SELECT * FROM products WHERE ProdMapUID='$orderprod'";
+			$getinventdetails = $conn->propare($inventdetails);
+			$getinventdetails->execute();
+			$inventdetails = $getinvnetdetails -> fetchAll(PDO::FETCH_ASSOC);
+			foreach( $inventdetails as $inventdtls){
+				$inventamt += $invnetdtls['Amount'];
+				$inventqty = $inventdtls['Qty'];
+			}
+			//Try to auto update the box amount in the invnetory
+			
+			$inventtotal = $inventamt*$inventqty;
+			$proddiff = $invnettotal-$newprodamt;
+			if($inventqty-$proddiff == 0){
+				$subtract = "UPDATE inventory SET Amount=Amount-1 WHERE PrdtMapUID='$orderprod' AND ArrivalDate = the most old < HOW???"; 
+			}
+			*/
 		}
 	}
 
