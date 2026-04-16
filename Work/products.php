@@ -1,10 +1,20 @@
 <?php 
 	include 'titlebar.php';
 	//query all the products - still need to add a search bar
-	$productquery = 'SELECT * FROM products';
+	if(isset($_POST['itemsearch'])){
+		$searchitem = $_POST['searchitem'];
+		$productquery = "SELECT * FROM products WHERE Name LIKE '%$searchitem%' OR Description LIKE '%$searchitem%'";
+	}
+	else { $productquery = 'SELECT * FROM products'; }
 	$prodstmt = $conn->prepare($productquery);
 	$prodstmt->execute();
 	$prodlist = $prodstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	//saerch bar
+	echo "<div class='search'><form method='post' action='".$_SERVER['PHP_SELF']."'>
+		<input name='searchitem' type='text' class='search' placeholder='Scan barcode to search'>  
+		<input class='search' type='submit' value='SEARCH' name='itemsearch'></form></div>";
+	
 	//Display all of the products
 	foreach($prodlist as $prod){
 		$pname = $prod['Name'];
