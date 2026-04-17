@@ -12,13 +12,13 @@ body { font-family: Sans-serif; }
 
 td {
     text-align: left;
-    vertical-align: center;
+    vertical-align: middle;
     word-wrap: break-word;
     padding: 3px;
     border-spacing: 0;
 }
 
-td.
+td.center
  { text-align: center; }
 
 table { border-spacing: 0; }
