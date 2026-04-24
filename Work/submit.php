@@ -267,6 +267,36 @@
 			}
 			*/
 		}
+		if(isset($_POST['UpdateSiteSettings'])) {
+			$HLcolor = $_POST['HLcolor'];
+			$sitename = $_POST['sitename'];
+			$stylesheet = $_POST['theme'];
+			$fontstyle = $_POST['fontstyle'];
+			$CompanyName = $_POST['companyname'];
+			$CompanyAddress = $_POST['companyaddress'];
+			$CompanyPhone = $_POST['companyphone'];
+			$CompanyEmail = $_POST['companyemail'];
+			//Get the site logo and save to permanent
+			if ( $_FILES['sitelogo']['tmp_name'] != null ){
+				$sitelogo = basename($_FILES['sitelogo']['name']);
+				$tmpimage = $_FILES['sitelogo']['tmp_name'];
+				$curdir = getcwd();
+				$logosave = $curdir."/images/".$sitelogo; 
+				$logopath = "images/".$sitelogo;
+				move_uploaded_file($tmpimage, $logosave) or die("Cannot move uploaded file to working directory");
+				$updatesitesettings = "UPDATE websettings SET HLcolor='$HLcolor', Sitelogo='$logopath', Sitename='$sitename', Style='$stylesheet', fontstyle='$fontstyle', CompanyName='$CompanyName', CompanyAddress='$CompanyAddress', CompanyPhone='$CompanyPhone', CompanyEmail='$CompanyEmail' WHERE UID='STYLE12345'";
+			}
+			else {
+				$updatesitesettings = "UPDATE websettings SET HLcolor='$HLcolor', Sitename='$sitename', Style='$stylesheet', fontstyle='$fontstyle', CompanyName='$CompanyName', CompanyAddress='$CompanyAddress', CompanyPhone='$CompanyPhone', CompanyEmail='$CompanyEmail' WHERE UID='STYLE12345'";
+			
+			}
+			$updsitequery = $conn->prepare($updatesitesettings);
+			$updsitequery -> execute();
+			echo "<h3>Update</h3><div class='postlink'>
+				<h3>Site settings have been updated</h3>
+				<p><a href='products.php'><button>< BACK</button></a></p>
+				</div>";
+		}
 	}
 
 	else { echo "<h3>Invalid user, please login as admin.</h3>"; } 

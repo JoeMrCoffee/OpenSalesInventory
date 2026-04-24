@@ -19,12 +19,16 @@
         <a href='usermgmt.php' class='titlelink dropdownlink'>USER MANAGEMENT</a><br>
         <a href='prodmgmt.php' class='titlelink dropdownlink'>PRODUCT MANAGEMENT</a><br>
         <a href='inventmgmt.php' class='titlelink dropdownlink'>INVENTORY MANAGEMENT</a><br>
-        <a href='ordermgmt.php' class='titlelink dropdownlink'>ORDER MANAGEMENT</a><br>";
+        <a href='ordermgmt.php' class='titlelink dropdownlink'>ORDER MANAGEMENT</a><br>
+        <a href='sitesettings.php' class='titlelink dropdownlink'>WEBSITE SETTINGS</a><br>";
     }
 ?>
 	</div>
 	</td>
-	<td class='titleimage' width='100px'>LOGO</td>
+	<td class='title' width='100px'>
+	<?php if($sitelogo != null) { echo "<img class='titleimage' src='$sitelogo' >"; }
+		echo "$sitename"; ?>
+	</td>
 	<td width='87%'></td>
 	<td><a href='shoppingcart.php'><img src='shoppingcart.png' style='max-width: 30px;' title='View shopping cart'></a></td>
 </tr></table><br><br><br>

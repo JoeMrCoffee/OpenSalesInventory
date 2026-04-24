@@ -1,5 +1,6 @@
 <?php session_start();
 	//DB credentials
+	//Note if this file path changes also need to update in styles.php and darkstyles.php
 	$login = parse_ini_file('/var/www/html/MySQLlogin.ini');
 	$host = $login['host'];
 	$user = $login['user'];
@@ -74,6 +75,18 @@
 			`ShippingDate` date DEFAULT NULL,
 			`Invoice` text DEFAULT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8",
+			"CREATE TABLE `websettings` (
+			`UID` varchar(12) DEFAULT 'Style12345',
+			`Style` varchar(30) DEFAULT 'light',
+			`HLcolor` varchar(30) DEFAULT '#2eabcc',
+			`fontstyle` varchar(50) DEFAULT 'Sans-serif',
+			`Sitename` varchar(30) DEFAULT 'Logo',
+			`Sitelogo` text DEFAULT NULL,
+			`CompanyName` varchar(100) DEFAULT NULL,
+			`CompanyAddress` varchar(100) DEFAULT NULL,
+			`CompanyPhone` varchar(100) DEFAULT NULL,
+			`CompanyEmail` varchar(100) DEFAULT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8"
 		];
 		foreach($create as $newtable){
 			$conn->exec($newtable);
@@ -83,6 +96,10 @@
 		$defaultadmin = "INSERT INTO users (UID, Name, password, email, phonenumber, usertype) VALUES ('defaultadmin1234567', 'admin', '$defaultadminpass', 'default@admin.org', '3112345678', 'admin')";
 		$defaultadminstmt = $conn->prepare($defaultadmin);
 		$defaultadminstmt->execute();
+		
+		$defaultwebsettings = "INSERT INTO websettings (UID, Style, HLcolor, Sitename, fontstyle) VALUES ('STYLE12345', 'light', '#2eabcc', 'Logo', 'Sans-serif')";
+		$defaultwebstmt = $conn->prepare($defaultwebsettings);
+		$defaultwebstmt->execute();
 	}
 	//Common functions to call later:
 	//clear out extra line breaks when editing a large text block that already used nl2br
@@ -90,15 +107,32 @@
 		$string = str_replace("<br />", "", $string);
 		return $string;
 	}
+
+	$websettings = "SELECT * FROM websettings WHERE UID='STYLE12345'";
+	$webstmt = $conn->prepare($websettings);
+	$webstmt->execute();
+	$settingslist = $webstmt->fetchAll(PDO::FETCH_ASSOC);
+	foreach( $settingslist as $webset) {
+		$HLcolor = $webset['HLcolor'];
+		$sitelogo = $webset['Sitelogo'];
+		$sitename = $webset['Sitename'];
+		$stylesheet = $webset['Style'];
+		$fontstyle = $webset['fontstyle'];
+		$CompanyName = $webset['CompanyName'];
+		$CompanyAddress = $webset['CompanyAddress'];
+		$CompanyPhone = $webset['CompanyPhone'];
+		$CompanyEmail = $webset['CompanyEmail'];
+	}
 	
+	if($stylesheet == 'light' || $stylesheet != 'dark'){ $styleref = "styles.php"; }
+	elseif ($stylesheet == 'dark'){ $styleref = "darkstyles.php"; }
+	
+	echo "<!DOCTYPE html>
+		<html>
+		<title>OpenSalesInventory</title>
+		<head>
+		<meta charset='utf-8'>
+		<link rel='stylesheet' type='text/css' href='$styleref' />
+		<link rel='icon' href='favicon.png'>
+		</head>";
 ?>
-<!DOCTYPE html>
-<html>
-<title>OpenSalesInventory</title>
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" href="favicon.png">
-
-</head>
-
