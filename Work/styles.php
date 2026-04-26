@@ -220,6 +220,7 @@ select.config {
     width: 100%;
     background-color: #FFFFFF;
     min-height: 50px;
+    max-height: 50px;
     z-index: 1;
     vertical-align: middle;
     border-spacing: 0;
@@ -254,6 +255,7 @@ select.config {
 
 .titleimage{
     max-width: 100px;
+    max-height: 49px;
     font-family: <?="$fontstyle"; ?>;
 }
 

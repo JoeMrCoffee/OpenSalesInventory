@@ -25,9 +25,9 @@
 ?>
 	</div>
 	</td>
-	<td class='title' width='100px'>
+	<td class='title' width='50px'>
 	<?php if($sitelogo != null) { echo "<img class='titleimage' src='$sitelogo' >"; }
-		echo "$sitename"; ?>
+		echo "<td class='title'>$sitename</td>"; ?>
 	</td>
 	<td width='87%'></td>
 	<td><a href='shoppingcart.php'><img src='shoppingcart.png' style='max-width: 30px;' title='View shopping cart'></a></td>
