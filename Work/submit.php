@@ -277,15 +277,21 @@
 			$CompanyPhone = $_POST['companyphone'];
 			$CompanyEmail = $_POST['companyemail'];
 			//Get the site logo and save to permanent
-			if ( $_FILES['sitelogo']['tmp_name'] != null ){
+			if ( $_FILES['sitelogo']['tmp_name'] != null && $_FILES['favicon']['tmp_name'] != null){
 				$sitelogo = basename($_FILES['sitelogo']['name']);
 				$tmpimage = $_FILES['sitelogo']['tmp_name'];
 				$curdir = getcwd();
 				$logosave = $curdir."/images/".$sitelogo; 
 				$logopath = "images/".$sitelogo;
 				move_uploaded_file($tmpimage, $logosave) or die("Cannot move uploaded file to working directory");
-				$updatesitesettings = "UPDATE websettings SET HLcolor='$HLcolor', Sitelogo='$logopath', Sitename='$sitename', Style='$stylesheet', fontstyle='$fontstyle', CompanyName='$CompanyName', CompanyAddress='$CompanyAddress', CompanyPhone='$CompanyPhone', CompanyEmail='$CompanyEmail' WHERE UID='STYLE12345'";
+				$favicon = basename($_FILES['favicon']['name']);
+				$tmpicon = $_FILES['favicon']['tmp_name'];
+				$iconsave = $curdir."/images/".$favicon; 
+				$iconpath = "images/".$favicon;
+				move_uploaded_file($tmpicon, $iconsave) or die("Cannot move uploaded file to working directory");
+				$updatesitesettings = "UPDATE websettings SET HLcolor='$HLcolor', Sitelogo='$logopath', Favicon='$iconpath', Sitename='$sitename', Style='$stylesheet', fontstyle='$fontstyle', CompanyName='$CompanyName', CompanyAddress='$CompanyAddress', CompanyPhone='$CompanyPhone', CompanyEmail='$CompanyEmail' WHERE UID='STYLE12345'";
 			}
+			//Need to add some other logic here
 			else {
 				$updatesitesettings = "UPDATE websettings SET HLcolor='$HLcolor', Sitename='$sitename', Style='$stylesheet', fontstyle='$fontstyle', CompanyName='$CompanyName', CompanyAddress='$CompanyAddress', CompanyPhone='$CompanyPhone', CompanyEmail='$CompanyEmail' WHERE UID='STYLE12345'";
 			

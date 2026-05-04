@@ -82,6 +82,7 @@
 			`fontstyle` varchar(50) DEFAULT 'Sans-serif',
 			`Sitename` varchar(30) DEFAULT 'Logo',
 			`Sitelogo` text DEFAULT NULL,
+			`Favicon` text DEFAULT NULL,
 			`CompanyName` varchar(100) DEFAULT NULL,
 			`CompanyAddress` varchar(100) DEFAULT NULL,
 			`CompanyPhone` varchar(100) DEFAULT NULL,
@@ -96,7 +97,7 @@
 		$defaultadmin = "INSERT INTO users (UID, Name, password, email, phonenumber, usertype) VALUES ('defaultadmin1234567', 'admin', '$defaultadminpass', 'default@admin.org', '3112345678', 'admin')";
 		$defaultadminstmt = $conn->prepare($defaultadmin);
 		$defaultadminstmt->execute();
-		
+		//set some default values for the web settings
 		$defaultwebsettings = "INSERT INTO websettings (UID, Style, HLcolor, Sitename, fontstyle) VALUES ('STYLE12345', 'light', '#2eabcc', 'Logo', 'Sans-serif')";
 		$defaultwebstmt = $conn->prepare($defaultwebsettings);
 		$defaultwebstmt->execute();
@@ -115,6 +116,7 @@
 	foreach( $settingslist as $webset) {
 		$HLcolor = $webset['HLcolor'];
 		$sitelogo = $webset['Sitelogo'];
+		$favicon = $webset['Favicon'];
 		$sitename = $webset['Sitename'];
 		$stylesheet = $webset['Style'];
 		$fontstyle = $webset['fontstyle'];
@@ -133,6 +135,7 @@
 		<head>
 		<meta charset='utf-8'>
 		<link rel='stylesheet' type='text/css' href='$styleref' />
-		<link rel='icon' href='favicon.png'>
+		<link rel='icon' href='$favicon'> 
+		<!-- <link rel='icon' href='images/loremipsum_favicon.png'> -->
 		</head>";
 ?>
