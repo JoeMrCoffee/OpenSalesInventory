@@ -7,7 +7,7 @@
 			<p><strong>Site name: </strong>&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='sitename' value='$sitename'></p>
 			<p><strong>Site logo: </strong>&nbsp;&nbsp;<input type='file' name='sitelogo' >
 			<br> Existing logo: $sitelogo</p>
-			<p><strong>Site favicon (this may need to be smaller in size): </strong>&nbsp;&nbsp;<input type='file' name='favicon' >
+			<p><strong>Site favicon</strong> (this may need to be smaller in size): &nbsp;&nbsp;<input type='file' name='favicon' >
 			<br> Existing icon: $favicon</p>
 			<p><strong>Highlight color: </strong>&nbsp;&nbsp;&nbsp;<input type='color' name='HLcolor' value='$HLcolor'></p>
 			<p><strong>Theme: </strong>&nbsp;&nbsp;&nbsp;&nbsp;
