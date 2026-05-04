@@ -135,7 +135,6 @@
 		<head>
 		<meta charset='utf-8'>
 		<link rel='stylesheet' type='text/css' href='$styleref' />
-		<link rel='icon' href='$favicon'> 
-		<!-- <link rel='icon' href='images/loremipsum_favicon.png'> -->
+		<link rel='icon' href='$favicon'>
 		</head>";
 ?>
