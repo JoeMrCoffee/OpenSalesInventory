@@ -22,8 +22,12 @@
 			$pprice = $prod['Price'];
 			$pcost = $prod['Cost'];
 			//This is a tripple escape '\" \"' <-- something interesting
-			if ($prodcnt % 2 == 0){
+			if ($prodcnt % 2 == 0 && $stylesheet == "light"){
 				echo "<tr style='background-color:#eaeaea;'>";
+				$prodcnt += 1;
+			}
+			else if ($prodcnt % 2 == 0 && $stylesheet == "dark"){
+				echo "<tr style='background-color:#7f7f7f;'>";
 				$prodcnt += 1;
 			}
 			else { 

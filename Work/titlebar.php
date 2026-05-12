@@ -1,10 +1,20 @@
 <?php
 	include 'header.php';
 	include 'validation.php';
+	if($stylesheet == 'light' || $stylesheet != 'dark'){ 
+		$menuoverflow = "menuoverflow.png"; 
+		$shoppingcart = "shoppingcart.png";
+		$close = "close.png";
+	}
+	elseif ($stylesheet == 'dark'){
+		$menuoverflow = "menuoverflowlight.png"; 
+		$shoppingcart = "shoppingcartlight.png";
+		$close = "closelight.png";
+	}
 ?>
 <body>
 <table class='titlebar' align='center' cellspacing='0px' width='100%'><tr>
-	<td class='menuoverflow' width='30px'><img src='menuoverflow.png' style='max-width: 30px;'>
+<?php echo "	<td class='menuoverflow' width='30px'><img src='$menuoverflow' style='max-width: 30px;'>"; ?>
 		<div class='logoutdropdown'>
 		<a href='products.php' class='titlelink dropdownlink'>PRODUCTS</a><br>
 		<a href='login.php' class='titlelink dropdownlink'>LOGIN</a><br>
@@ -30,6 +40,6 @@
 		echo "<td class='title'>$sitename</td>"; ?>
 	</td>
 	<td width='87%'></td>
-	<td><a href='shoppingcart.php'><img src='shoppingcart.png' style='max-width: 30px;' title='View shopping cart'></a></td>
+<?php echo "	<td><a href='shoppingcart.php'><img src='$shoppingcart' style='max-width: 30px;' title='View shopping cart'></a></td>"; ?>
 </tr></table><br><br><br>
 <table width='72%' align='center' cellspacing='0' cellpadding='1'><tr><td>

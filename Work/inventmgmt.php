@@ -28,8 +28,12 @@
 				$iShelflife = $item['Shelflife'];
 				$iArrival = $item['ArrivalDate'];
 				$iAmount = $item['Amount'];
-				if ($linecnt % 2 == 0){
+				if ($linecnt % 2 == 0 && $stylesheet == "light"){
 					echo "<tr style='background-color:#eaeaea;'>";
+					$linecnt += 1;
+				}
+				else if ($linecnt % 2 == 0 && $stylesheet == "dark"){
+					echo "<tr style='background-color:#7f7f7f;'>";
 					$linecnt += 1;
 				}
 				else {

@@ -81,8 +81,12 @@
 				$orderinvoice = "Will be issued once this order is shipped. Thank you for your patience.";
 			}
 			//alternate the background color per row
-			if ($ordcnt % 2 == 0){
+			if ($ordcnt % 2 == 0 && $stylesheet == "light"){
 				echo "<tr style='background-color:#eaeaea;'>";
+				$ordcnt += 1;
+			}
+			else if ($ordcnt % 2 == 0 && $stylesheet == "dark"){
+				echo "<tr style='background-color:#7f7f7f;'>";
 				$ordcnt += 1;
 			}
 			else { 
