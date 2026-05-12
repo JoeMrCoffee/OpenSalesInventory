@@ -32,13 +32,13 @@ https://www.youtube.com/@opensourcetechtraining64
 		- complete an order placement to the database -- ready
 		- Add users' pending and past orders -- ready
 		- Create an Order management page -- ready
-		- Link order fulfillment with inventory reduction - TBD
+		- Link order fulfillment with inventory reduction - PARTIAL
 - Create a search bar for finding products and filtering types -- ready
   *search by product name and description
 - Create some smart metrics to help analyze stock and planning -- TBD
 - Update the UI particularly for the product detailed views -- TBD
 	- Currently quite bland, likely needed with the order flow when it is ready.
-- Allow for site admins to customize the look and branding of the website -- TBD
+- Allow for site admins to customize the look and branding of the website -- ready (mostly)
 
 ### Out-of-scope
 Payment processing is currently not planned, but should be possible to include with 3rd party APIs. To my knowledge all payment processing tools require some proof of an organization in order to help process biling and cash flow. Therefore, payment processing will be out-of-scope for this relatively small project until I have more core parts complete, and might be something that users will need to alway re-implement with their organization-specific API key from the payment processing provider.
